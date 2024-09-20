@@ -1,0 +1,8 @@
+numpy
+torch 
+transformers
+accelerate
+tqdm
+hydra-core
+sentencepiece
+mauve-text

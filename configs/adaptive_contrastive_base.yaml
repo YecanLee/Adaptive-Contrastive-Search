@@ -1,0 +1,10 @@
+experiments:
+  model_name : 'gpt2-xl'
+  dataset_prefix : './data'
+  dataset : 'wikitext'
+  k : 5
+  alpha : 0.6
+  save_path_prefix : 'adaptive_contrative_search/'
+
+model:
+  q : 1
