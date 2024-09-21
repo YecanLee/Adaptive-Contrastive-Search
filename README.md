@@ -70,11 +70,12 @@ To check the details for each dataset, please check the [data/README.md](data/RE
 You can run the story generation baseline with [static contrastive search paper](https://arxiv.org/abs/2210.14140) method by running [static_contrastive_base.py](story_generation/static_contrastive_base.py). The script has various arguments to switch between different datasets, adjust penalty alpha and k value, change the generation result saving path, etc. For example, to sample from `wikitext` dataset with `k=10` and `alpha=0.6`, you can use:
 
 ```bash
-python story_generation/static_contrastive_base.py \
+python story_generation/static_contrastive_search.py \
 --config_path configs/contrastive_base.yaml \
 --model_name gpt2-xl \
 --save_path_prefix wikitext_CS \
 --k 10 \
+--alpha 0.6 \
 --dataset wikitext 
 ```
 
@@ -83,7 +84,7 @@ python story_generation/static_contrastive_base.py \
 You can run the story generation baseline with our proposed [adaptive contrastive search](https://arxiv.org/pdf/2407.18698v1) method by running [adaptive_contrastive_base.py](story_generation/adaptive_contrastive_base.py). This script also has various arguments to switch between different datasets, adjust penalty alpha and k value **starting value**, change the generation result saving path, etc. For example, to sample from `wikitext` dataset with `q=8` and `alpha=0.6` as starting value, you can run:
 
 ```bash
-python story_generation/adaptive_contrastive_base.py \
+python story_generation/adaptive_contrastive_search.py \
 --config_path configs/adaptive_contrastive_base.yaml \
 --q 8  \
 --dataset wikitext \
