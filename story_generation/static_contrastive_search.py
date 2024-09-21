@@ -13,6 +13,7 @@ import argparse
 from omegaconf import OmegaConf
 from transformers import GPT2LMHeadModel, AutoTokenizer
 from helpers.process_data import load_data
+from tqdm import trange
 
 
 logging.getLogger('transformers.generation_utils').disabled = True
@@ -68,6 +69,7 @@ if __name__ == '__main__':
     tokenizer.pad_token = pad_token
     special_tokens_dict = {'pad_token': pad_token}
     num_added_toks = tokenizer.add_special_tokens(special_tokens_dict)
+    model.generation_config.pad_token_id = tokenizer.pad_token_id
     model = model.to(device)
     model = torch.compile(model)
     model.eval()
@@ -82,11 +84,7 @@ if __name__ == '__main__':
 
     with torch.inference_mode():
         with torch.autocast('cuda', enabled=cuda_available, dtype=torch.float16, cache_enabled=True):
-            for index in range(data_num):
-                if args.data_num:
-                    print(f'Inference {index + 1}/{args.data_num} ({np.round((index + 1)/args.data_num*100, 2)} %)')
-                else:
-                    print(f'Inference {index + 1}/{data_num} ({np.round((index + 1)/data_num*100, 2)} %)')
+            for index in trange(data_num):
                 one_prefix_text = prefix_text_list[index]
                 one_reference_text = reference_text_list[index]
                 input_ids = tokenizer(one_prefix_text, return_tensors='pt').input_ids
@@ -97,7 +95,7 @@ if __name__ == '__main__':
                 output = model.generate(input_ids, 
                                         penalty_alpha=args.alpha, 
                                         top_k=args.k, 
-                                        max_length=prefix_len+256)
+                                        max_length=prefix_len+256,)
 
                 one_generation_text = tokenizer.decode(output[0][prefix_len:], skip_special_tokens=True)
                               

@@ -116,7 +116,7 @@ class SimCTG(nn.Module):
         # sanity check
         assert alpha >= 0. and alpha <= 1.0
 
-        from story_generation.utils_acs_base import ContrastiveDecodingOneStep
+        from utils_acs import ContrastiveDecodingOneStep
         for step in range(decoding_len):
             input_ids = ContrastiveDecodingOneStep(self, input_ids, beam_width, alpha)
         return input_ids[0]
@@ -131,7 +131,7 @@ class SimCTG(nn.Module):
         '''
         self.model.eval()
         
-        from story_generation.utils_acs_base import ContrastiveDecodingOneStepFast
+        from utils_acs import ContrastiveDecodingOneStepFast
 
         # sanity check
         assert alpha >= 0. and alpha <= 1.0

@@ -68,7 +68,7 @@ if __name__ == '__main__':
     tokenizer = GPT2Tokenizer.from_pretrained(args.model_name)
     eos_token_id = tokenizer.eos_token_id
     pad_token = '<_PAD_>'
-    model = simctg_arctanh_base.SimCTG(args.model_name, pad_token)
+    model = simctg_acs_base.SimCTG(args.model_name, pad_token)
     if cuda_available:
         model = model.to(device)
     model = torch.compile(model,mode='max-autotune')
