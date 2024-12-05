@@ -20,11 +20,45 @@ This repository contains:
 <a id="top"></a>
 ## Repository Contents 📖
 
+- [Timeline](#timeline)
+- [ACS in HuggingFace Transformers](#acs-in-hugging-face-transformers)
 - [Environment Setup](#environment-setup-)
 - [Dataset Information](#dataset-information-)
 - [Generation Baselines](#baselines-)
 - [Metrics Evaluation (MAUVE, Diversity, Coherence)](#metric-evaluation)
 - [Human Evaluation](#human-evaluation-)
+
+## 📅 Timeline <a name="timeline"></a> <a href="#top">[Back to Top]</a>
+- [2024/12/05] We have integrated the official code implementation of our paper into the Hugging Face Transformers library 🎉. Now you can use our ACS method with any Hugging Face models!🤗
+- [2024/09/20] Our paper is accepted by EMNLP 2024 (Findings)! 🤩.
+- [2024/07/16] We have released the official code implementation of our paper 🤩.
+
+## 🤗 ACS in HuggingFace Transformers <a name="acs-in-hugging-face-transformers"></a> <a href="#top">[Back to Top]</a>
+To use our ACS method with HuggingFace Transformers, please follow the following steps:
+1. Clone and install all the dependencies:
+```bash
+git clone https://github.com/YecanLee/Adaptive-Contrastive-Search
+cd Adaptive-Contrastive-Search
+pip install torch sentencepiece protobuf accelerate
+```
+2. Install the `transformers` library from source:
+```bash
+cd transformers
+pip install -e .
+```
+3. Run the `ACS` method with the following command:
+```bash
+python story_generation/hf_acs.py --model_name YOUR_MODEL_NAME --dataset YOUR_DATASET_NAME --save_path_prefix YOUR_SAVE_PATH_PREFIX --q YOUR_Q_VALUE --penalty YOUR_PENALTY_VALUE
+``` 
+For example, to sample from `Qwen2.5 7B` model by using `ACS` method with `wikitext` dataset with `q=8` and `penalty=1.2`, you can run:
+```bash
+python story_generation/hf_acs.py \
+--model_name Qwen2.5-7B \
+--dataset wikitext \
+--save_path_prefix Qwen2.5-7B_ACS \
+--q 8 \
+--penalty 1.2
+```
 
 ## Environment Setup <a name="environment-setup-"></a> 🚀 <a href="#top">[Back to Top]</a>
 First, download and set up the repo:
