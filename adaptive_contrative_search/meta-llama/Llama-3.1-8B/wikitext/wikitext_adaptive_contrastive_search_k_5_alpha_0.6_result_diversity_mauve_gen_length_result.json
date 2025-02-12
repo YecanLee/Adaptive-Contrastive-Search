@@ -1,0 +1,26 @@
+[
+    {
+        "diversity_dict": {
+            "reference_div": "92.98",
+            "prediction_diversity_list": [
+                "81.17"
+            ],
+            "prediction_div_mean": "81.17",
+            "prediction_div_std": "0.0"
+        },
+        "gen_length_dict": {
+            "gen_len_list": [
+                "159.52511415525115"
+            ],
+            "gen_len_mean": "159.53",
+            "gen_len_std": "0.0"
+        },
+        "mauve_dict": {
+            "mauve_score_list": [
+                "75.97015895951309"
+            ],
+            "mauve_mean": "75.97",
+            "mauve_std": "0.0"
+        }
+    }
+]
